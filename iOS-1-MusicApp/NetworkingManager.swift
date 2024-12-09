@@ -181,7 +181,7 @@ class NetworkingManager {
    
    
    // option 4 - send a local notification
-   func getWeather(song: String) {
+   func getSong(song: String) {
        // my code run in a different thread - not in main thread
        
        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(song)&appid=071c3ffca10be01d334505630d2c1a9c&units=metric")

@@ -35,7 +35,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Search Songs"/>
                                 <connections>
-                                    <segue destination="2kA-hQ-p5U" kind="show" id="9Gy-QM-FjB"/>
+                                    <segue destination="2kA-hQ-p5U" kind="show" id="IHj-P1-NB6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -48,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="959.5419847328244" y="-27.464788732394368"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Saved Songs Table View Controller-->
         <scene sceneID="92L-Ef-EJ4">
             <objects>
-                <tableViewController id="TNR-i3-VmM" sceneMemberID="viewController">
+                <tableViewController id="TNR-i3-VmM" customClass="SavedSongsTableViewController" customModule="iOS_1_MusicApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="BsA-hk-Cbs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,7 +75,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25n-Bk-zAs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="981" y="636"/>
+            <point key="canvasLocation" x="960" y="761"/>
         </scene>
         <!--Search songs-->
         <scene sceneID="FO8-9I-ya4">
@@ -84,7 +84,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="vCm-WU-LPN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemYellowColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="jjm-S2-B7d">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -117,7 +118,7 @@
             </objects>
             <point key="canvasLocation" x="1779" y="-18"/>
         </scene>
-        <!--Song Details View Controller-->
+        <!--Title-->
         <scene sceneID="sJv-fD-aN5">
             <objects>
                 <viewController id="9vf-VS-Pq7" customClass="SongDetailsViewController" customModule="iOS_1_MusicApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -129,15 +130,15 @@
                                 <rect key="frame" x="76" y="180" width="240" height="221"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5g-CT-KCg">
-                                <rect key="frame" x="76" y="564" width="240" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uci-Wj-kie">
+                                <rect key="frame" x="35" y="463" width="324" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uci-Wj-kie">
-                                <rect key="frame" x="76" y="463" width="240" height="72"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5g-CT-KCg">
+                                <rect key="frame" x="35" y="564" width="342" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -147,7 +148,13 @@
                         <viewLayoutGuide key="safeArea" id="Ftx-RN-m8j"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iSY-or-Nd4"/>
+                    <navigationItem key="navigationItem" title="Title" id="zlm-74-8fK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3CX-VI-EFd">
+                            <connections>
+                                <action selector="saveSong:" destination="9vf-VS-Pq7" id="gwe-zb-WF6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="songArtistNameLable" destination="o5g-CT-KCg" id="anW-Kz-G08"/>
                         <outlet property="songIcon" destination="gl1-DM-1aa" id="hin-hH-kdt"/>

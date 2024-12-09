@@ -22,6 +22,8 @@
 		B502ABB62D0694D900DD3BD5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502ABB52D0694D900DD3BD5 /* NetworkingManager.swift */; };
 		B502ABB82D06A94200DD3BD5 /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502ABB72D06A94200DD3BD5 /* SpotifyService.swift */; };
 		B502ABBA2D06D1E600DD3BD5 /* SongDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502ABB92D06D1E600DD3BD5 /* SongDetailsViewController.swift */; };
+		B502ABBC2D072B9500DD3BD5 /* SavedSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502ABBB2D072B9500DD3BD5 /* SavedSongsTableViewController.swift */; };
+		B502ABBE2D072EF000DD3BD5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502ABBD2D072EF000DD3BD5 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		B502ABB52D0694D900DD3BD5 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		B502ABB72D06A94200DD3BD5 /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
 		B502ABB92D06D1E600DD3BD5 /* SongDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailsViewController.swift; sourceTree = "<group>"; };
+		B502ABBB2D072B9500DD3BD5 /* SavedSongsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSongsTableViewController.swift; sourceTree = "<group>"; };
+		B502ABBD2D072EF000DD3BD5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 				B502ABB52D0694D900DD3BD5 /* NetworkingManager.swift */,
 				B502ABB72D06A94200DD3BD5 /* SpotifyService.swift */,
 				B502ABB92D06D1E600DD3BD5 /* SongDetailsViewController.swift */,
+				B502ABBB2D072B9500DD3BD5 /* SavedSongsTableViewController.swift */,
+				B502ABBD2D072EF000DD3BD5 /* CoreDataManager.swift */,
 			);
 			path = "iOS-1-MusicApp";
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 			files = (
 				B502AB832D067C9000DD3BD5 /* ViewController.swift in Sources */,
 				B502AB7F2D067C9000DD3BD5 /* AppDelegate.swift in Sources */,
+				B502ABBC2D072B9500DD3BD5 /* SavedSongsTableViewController.swift in Sources */,
 				B502ABB22D0680F600DD3BD5 /* SearchTableViewController.swift in Sources */,
 				B502ABB42D06922500DD3BD5 /* Model.swift in Sources */,
 				B502AB812D067C9000DD3BD5 /* SceneDelegate.swift in Sources */,
@@ -285,6 +292,7 @@
 				B502ABB82D06A94200DD3BD5 /* SpotifyService.swift in Sources */,
 				B502ABBA2D06D1E600DD3BD5 /* SongDetailsViewController.swift in Sources */,
 				B502ABB62D0694D900DD3BD5 /* NetworkingManager.swift in Sources */,
+				B502ABBE2D072EF000DD3BD5 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,25 @@
 
 import UIKit
 
+protocol AddingNewSongProtocol {
+    func addingNewSongDone(songname: String)
+    
+}
+
+
+
 class SongDetailsViewController: UIViewController, NetworkingDelegate{
     
+    var delegate: AddingNewSongProtocol?
     
     
+    @IBAction func saveSong(_ sender: Any) {
+        
+        if let goodsong = songNameLable.text {
+            delegate?.addingNewSongDone(songname: goodsong)
+            dismiss(animated: true)
+        }
+    }
     
 
     @IBOutlet weak var songIcon: UIImageView!
@@ -65,6 +80,10 @@ class SongDetailsViewController: UIViewController, NetworkingDelegate{
     }
     
     
+    
+    
+    
+    
     func downloadImage(icon:String){
             var url = URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")!
            
@@ -96,5 +115,6 @@ class SongDetailsViewController: UIViewController, NetworkingDelegate{
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }

@@ -13,7 +13,10 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, Net
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchBar.delegate = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -53,13 +56,12 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, Net
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+        
+        return 1    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return apiSongs.count
     }
     func networkingDidFinishWithListOfSongs(songs: [String]) {
         apiSongs = songs
@@ -77,15 +79,13 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, Net
         
     }
     
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = apiSongs[indexPath.row]
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -133,11 +133,13 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, Net
     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-        var songdetailVC = segue.destination as! SongDetailsViewController
-        var i = tableView.indexPathForSelectedRow?.row
-        songdetailVC.selectedSong = apiSongs[i!]
-        
+        if segue.identifier == "showSongDetails" {  // Make sure the segue identifier is correct
+            if let songdetailVC = segue.destination as? SongDetailsViewController {
+                if let selectedRow = tableView.indexPathForSelectedRow?.row {
+                    songdetailVC.selectedSong = apiSongs[selectedRow]
+                }
+            }
+        }
     }
 
 }

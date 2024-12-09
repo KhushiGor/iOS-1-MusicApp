@@ -8,10 +8,10 @@
 import Foundation
 
 class SongInfo : Decodable{
+    var song : [songObj] = [songObj]()
+}
+class songObj : Decodable{
     var songname : String
     var songImage : String
-    init(songname: String, songImage: String) {
-        self.songname = songname
-        self.songImage = songImage
-    }
+    
 }

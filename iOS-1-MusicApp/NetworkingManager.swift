@@ -181,10 +181,10 @@ class NetworkingManager {
    
    
    // option 4 - send a local notification
-   func getWeather(city: String) {
+   func getWeather(song: String) {
        // my code run in a different thread - not in main thread
        
-       let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=071c3ffca10be01d334505630d2c1a9c&units=metric")
+       let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(song)&appid=071c3ffca10be01d334505630d2c1a9c&units=metric")
        
        let datatask = URLSession.shared.dataTask(with: url!) { data, response, error in
            if let error = error {// handle, then...return}
@@ -214,9 +214,6 @@ class NetworkingManager {
                    print(firstObjInArray["description"])
                    
                    
-                   var mainDic =  dic["main"] as! NSDictionary
-                   print(mainDic["temp"])
-                   print(mainDic["feels_like"])
                    
                   
                    

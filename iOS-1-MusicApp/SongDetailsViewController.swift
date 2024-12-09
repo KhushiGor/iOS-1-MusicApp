@@ -8,15 +8,7 @@
 import UIKit
 
 class SongDetailsViewController: UIViewController, NetworkingDelegate{
-    func networkingDidFinishWithSongObj(so: SongInfo) {
-        DispatchQueue.main.async {
-            
-            self.songNameLable.text = so.songname
-            self.songArtistNameLable.text = "Artist: \(so.songname)"
-            self.downloadImage(icon:so.songImage)
-            
-        }
-    }
+    
     
     
     
@@ -29,7 +21,7 @@ class SongDetailsViewController: UIViewController, NetworkingDelegate{
     
     @IBOutlet weak var songArtistNameLable: UILabel!
     
-    var selectedSong: String = ""
+    var selectedSong: String?
     
     var notificationName = (UIApplication.shared.delegate as! AppDelegate).notificationName
     
@@ -38,21 +30,31 @@ class SongDetailsViewController: UIViewController, NetworkingDelegate{
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        var selectedSong: String = ""
+        if let song = selectedSong {
+                   self.songNameLable.text = song
+                   self.songArtistNameLable.text = "Artist: \(song)"  // Update this if you have more specific song data
+               }
         
-        var notificationName = (UIApplication.shared.delegate as! AppDelegate).notificationName
         
-        
+    }
+    func networkingDidFinishWithSongObj(so: SongInfo) {
+        DispatchQueue.main.async {
+            
+            self.songNameLable.text = so.song[0].songname
+            self.songArtistNameLable.text = "Artist: \(so.song[0].songname)"
+            self.downloadImage(icon: so.song[0].songImage)
+            
+        }
     }
     
     @objc
     func updateUI(_ notification: Notification){
         
-        var so = notification.userInfo!["songObj"] as! SongInfo
+        var so = notification.userInfo?["songObj"] as! SongInfo
         DispatchQueue.main.async {
-            self.songNameLable.text = so.songname
-            self.songArtistNameLable.text = "Artist : \(so.songname)"
-            self.downloadImage(icon:so.songImage)
+            self.songNameLable.text = so.song[0].songname
+            self.songArtistNameLable.text = "Artist : \(so.song[0].songname)"
+            self.downloadImage(icon:so.song[0].songImage)
         }
         
     }

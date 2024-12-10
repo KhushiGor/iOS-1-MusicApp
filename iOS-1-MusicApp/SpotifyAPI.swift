@@ -29,7 +29,7 @@ class SpotifyAPI {
         }
         
         var request = URLRequest(url: url)
-        request.addValue("Bearer BQBVzoUAZPA2VYNRAe6DMRatjX_x1VMj4WjmILzfYn4VAuDJXgDiEcaxOfa2XXxuGyYZEXFGBFDQTJtvjmeuw5uUms4FRgq62i_wmYxCtH9-PcPo1Wc", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer BQDu-zljj_Uev6lWQflDNkqUehhiLuUORblyHTgkJBBRnNHxo8D_cCFJ_v0TVJnYkviyHTsJKLcFuBrqUFOuR-Hh5uyhOWtyYxMk6bW9XoU7hWGpcJw", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {

@@ -58,7 +58,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
                     self?.songs = songs
                     
                     // Save fetched songs to Core Data
-                    CoreDataManager.shared.saveSongs(songs: songs)
                     
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
@@ -78,13 +77,13 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         // #warning Incomplete implementation, return the number of rows
         return songs.count
     }
-    func networkingDidFinishWithListOfSongs(songs: [String]) {
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        
-    }
+//    func networkingDidFinishWithListOfSongs(songs: [String]) {
+//        
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//        
+//    }
     
 //    func networkingDidFail() {
 //        
@@ -118,10 +117,20 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         let selectedSong = songs[indexPath.row]
         
         // Navigate to SongDetailsViewController
-        if let songDetailsVC = storyboard?.instantiateViewController(withIdentifier: "SongDetailsViewController") as? SongDetailsViewController {
-            songDetailsVC.song = selectedSong // Pass the selected song to the SongDetailsViewController
-            navigationController?.pushViewController(songDetailsVC, animated: true)
-        }
+        performSegue(withIdentifier: "showSongDetails", sender: songs[indexPath.row])
+        
+    }
+        
+        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "showSongDetails" {
+                if let songDetailVC = segue.destination as? SongDetailsViewController,
+                   let selectedSong = sender as? Song {
+                    songDetailVC.song = selectedSong
+                }
+            }
+        
+
     }
     /*
     // Override to support conditional editing of the table view.

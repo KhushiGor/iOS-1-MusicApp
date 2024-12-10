@@ -39,7 +39,20 @@ class SongDetailsViewController: UIViewController {
                }
     }
     
-
+    @IBAction func saveButtonClicked(_ sender: UIBarButtonItem) {
+        
+        guard let song = song else { return }
+                
+                // Save the song to Core Data
+                CoreDataManager.shared.saveSongs(songs: [song])
+                
+                // Optionally, show a confirmation message or alert
+                let alert = UIAlertController(title: "Saved", message: "The song has been saved to your library!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -49,5 +62,7 @@ class SongDetailsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }

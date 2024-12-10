@@ -38,4 +38,23 @@ class CoreDataManager {
                print("Failed to save songs: \(error)")
            }
        }
+    
+    func deleteAllData() {
+        // Create a fetch request for the entity
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = SongEntity.fetchRequest() // Replace `SongEntity` with your Core Data entity
+        
+        // Create a batch delete request
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            // Execute the batch delete request
+            try CoreDataManager.shared.context.execute(deleteRequest)
+            
+            // Optionally, you can reload the table view or refresh the UI
+            print("All data has been deleted successfully.")
+            
+        } catch {
+            print("Failed to delete data: \(error.localizedDescription)")
+        }
+    }
    }

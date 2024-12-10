@@ -6,12 +6,37 @@
 //
 
 import Foundation
-
-class SongInfo : Decodable{
-    var song : [songObj] = [songObj]()
+struct SpotifySearchResponse: Decodable {
+    let tracks: TrackContainer
 }
-class songObj : Decodable{
-    var songname : String
-    var songImage : String
-    
+
+struct TrackContainer: Decodable {
+    let items: [Track]
+}
+
+struct Track: Decodable {
+    let id: String
+    let name: String
+    let artists: [Artist]
+    let album: Album
+}
+
+struct Artist: Decodable {
+    let name: String
+}
+
+struct Album: Decodable {
+    let images: [Image]
+}
+
+struct Image: Decodable {
+    let url: String
+}
+
+// Song model to use within the app
+struct Song {
+    let id: String
+    let name: String
+    let artist: String
+    let thumbnailURL: String
 }

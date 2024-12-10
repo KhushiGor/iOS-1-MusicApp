@@ -16,9 +16,9 @@ class ViewController: UIViewController {
         searchSongButton.addTarget(self, action: #selector(openSearchSongs), for: .touchUpInside)
         view.addSubview(searchSongButton)
         
-        let savedSongsButton = UIButton(type: .system)
-        savedSongsButton.addTarget(self, action: #selector(openSavedSongs), for: .touchUpInside)
-        view.addSubview(savedSongsButton)
+//        let savedSongsButton = UIButton(type: .system)
+//        savedSongsButton.addTarget(self, action: #selector(openSavedSongs), for: .touchUpInside)
+//        view.addSubview(savedSongsButton)
     }
 
     
@@ -27,10 +27,10 @@ class ViewController: UIViewController {
             navigationController?.pushViewController(searchVC, animated: true)
         }
 
-        @objc func openSavedSongs() {
-            let savedVC = SavedSongsTableViewController()
-            navigationController?.pushViewController(savedVC, animated: true)
-        }
+//        @objc func openSavedSongs() {
+//            let savedVC = SavedSongsTableViewController()
+//            navigationController?.pushViewController(savedVC, animated: true)
+//        }
 
 }
 

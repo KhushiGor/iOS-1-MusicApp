@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KH6-OZ-EtU">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="KH6-OZ-EtU">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KH6-OZ-EtU" id="OGZ-vc-xLZ">
@@ -100,7 +100,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="9vf-VS-Pq7" kind="show" identifier="showSongDetails" id="AyZ-0H-gzT"/>
+                                    <segue destination="9vf-VS-Pq7" kind="show" identifier="SongDetailsViewController" id="AyZ-0H-gzT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -118,10 +118,10 @@
             </objects>
             <point key="canvasLocation" x="1779" y="-18"/>
         </scene>
-        <!--Title-->
+        <!--SongDetailsViewController-->
         <scene sceneID="sJv-fD-aN5">
             <objects>
-                <viewController id="9vf-VS-Pq7" customClass="SongDetailsViewController" customModule="iOS_1_MusicApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SongDetailsViewController" id="9vf-VS-Pq7" customClass="SongDetailsViewController" customModule="iOS_1_MusicApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UcZ-zz-vLn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,7 +130,7 @@
                                 <rect key="frame" x="76" y="180" width="240" height="221"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uci-Wj-kie">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uci-Wj-kie">
                                 <rect key="frame" x="35" y="463" width="324" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -151,14 +151,14 @@
                     <navigationItem key="navigationItem" title="Title" id="zlm-74-8fK">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3CX-VI-EFd">
                             <connections>
-                                <action selector="saveSong:" destination="9vf-VS-Pq7" id="gwe-zb-WF6"/>
+                                <action selector="saveSong:" destination="9vf-VS-Pq7" id="UAP-bu-6ME"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="songArtistNameLable" destination="o5g-CT-KCg" id="anW-Kz-G08"/>
-                        <outlet property="songIcon" destination="gl1-DM-1aa" id="hin-hH-kdt"/>
-                        <outlet property="songNameLable" destination="Uci-Wj-kie" id="n3r-uQ-pOi"/>
+                        <outlet property="artistNameLabel" destination="o5g-CT-KCg" id="7nf-DD-awV"/>
+                        <outlet property="songNameLabel" destination="Uci-Wj-kie" id="DuI-Jc-6DB"/>
+                        <outlet property="thumbnailImageView" destination="gl1-DM-1aa" id="fS1-LH-fc1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kab-NK-kXp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

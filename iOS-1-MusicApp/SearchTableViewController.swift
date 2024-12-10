@@ -7,8 +7,11 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController, UISearchBarDelegate, NetworkingDelegate  {
-    var apiSongs = [String]()
+class SearchTableViewController: UITableViewController, UISearchBarDelegate {
+//    var apiSongs = [String]()
+    var searchTask: DispatchWorkItem?
+    var songs = [Song]()
+        
     @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
@@ -23,37 +26,49 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, Net
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    override func viewWillAppear(_ animated: Bool) {
-        NetworkingManager.shared.delegate = self
-
-    }
+   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         
         print(searchText)
+        
+        searchTask?.cancel()
         if searchText.count > 2{
            
-            NetworkingManager.shared.getSongsFromAPI(song: searchText) { result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                    
-                case .success(let list):
-                    self.apiSongs = list
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+            let task = DispatchWorkItem { [weak self] in
+                      self?.searchSongsfromAPI(query: searchText)
+                  }
+                  searchTask = task
+
+                  // Execute the task after a short delay (e.g., 300ms)
+                  DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: task)
+              }
                 
-                }
-                
-            }
-        }
+            
         else {
-            apiSongs = [String]()
+            
             tableView.reloadData()
             
         }
     }
-    // MARK: - Table view data source
+    
+    func searchSongsfromAPI(query: String) {
+            SpotifyAPI.shared.searchSongs(query: query) { [weak self] result in
+                switch result {
+                case .success(let songs):
+                    self?.songs = songs
+                    
+                    // Save fetched songs to Core Data
+                    CoreDataManager.shared.saveSongs(songs: songs)
+                    
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                    
+                case .failure(let error):
+                    print("Failed to fetch songs: \(error.localizedDescription)")
+                }
+            }
+        }    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -61,32 +76,53 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, Net
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return apiSongs.count
+        return songs.count
     }
     func networkingDidFinishWithListOfSongs(songs: [String]) {
-        apiSongs = songs
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
         
     }
     
-    func networkingDidFail() {
-        
-    }
-    
-    func networkingDidFinishWithSongObj(so: SongInfo) {
-        
-    }
+//    func networkingDidFail() {
+//        
+//    }
+//    
+//    func networkingDidFinishWithSongObj(so: SongInfo) {
+//        
+//    }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = apiSongs[indexPath.row]
+        let song = songs[indexPath.row]
+                
+        cell.textLabel?.text = song.name
+               cell.detailTextLabel?.text = song.artist
+               if let url = URL(string: song.thumbnailURL) {
+                   // Load the thumbnail image asynchronously (optional)
+                   DispatchQueue.global().async {
+                       if let data = try? Data(contentsOf: url) {
+                           DispatchQueue.main.async {
+                               cell.imageView?.image = UIImage(data: data)
+                           }
+                       }
+                   }
+               }
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedSong = songs[indexPath.row]
+        
+        // Navigate to SongDetailsViewController
+        if let songDetailsVC = storyboard?.instantiateViewController(withIdentifier: "SongDetailsViewController") as? SongDetailsViewController {
+            songDetailsVC.song = selectedSong // Pass the selected song to the SongDetailsViewController
+            navigationController?.pushViewController(songDetailsVC, animated: true)
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -132,14 +168,27 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, Net
     }
     */
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSongDetails" {  // Make sure the segue identifier is correct
-            if let songdetailVC = segue.destination as? SongDetailsViewController {
-                if let selectedRow = tableView.indexPathForSelectedRow?.row {
-                    songdetailVC.selectedSong = apiSongs[selectedRow]
-                }
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showSongDetails" {  // Make sure the segue identifier is correct
+//            if let songdetailVC = segue.destination as? SongDetailsViewController {
+//                if let selectedRow = tableView.indexPathForSelectedRow?.row {
+//                    songdetailVC.selectedSong = songs[selectedRow]
+//                }
+//            }
+//        }
+//    }
 
 }
+//extension UIImageView {
+//    func loadImage(from urlString: String) {
+//        guard let url = URL(string: urlString) else { return }
+//        
+//        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+//            if let data = data, error == nil {
+//                DispatchQueue.main.async {
+//                    self?.image = UIImage(data: data)
+//                }
+//            }
+//        }.resume()
+//    }
+//}

@@ -121,7 +121,7 @@
         <!--SongDetailsViewController-->
         <scene sceneID="sJv-fD-aN5">
             <objects>
-                <viewController title="SongDetailsViewController" id="9vf-VS-Pq7" customClass="SongDetailsViewController" customModule="iOS_1_MusicApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SongDetailsViewController" title="SongDetailsViewController" id="9vf-VS-Pq7" customClass="SongDetailsViewController" customModule="iOS_1_MusicApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UcZ-zz-vLn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
